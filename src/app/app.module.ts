@@ -23,9 +23,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgbModule,
     RouterModule.forRoot([
-      {
-        path:'', component: AuthenticationComponent, pathMatch: 'full'
-      }
+      { path:'', component: AuthenticationComponent, pathMatch: 'full'},
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
 
     ])
   ],

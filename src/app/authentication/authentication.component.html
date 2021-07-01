@@ -1,5 +1,5 @@
 <div id="form">
-    <form [formGroup]="loginForm" (ngSubmit)="SendIt()">
+    <form [formGroup]="loginForm" (ngSubmit)="LogIn()">
         <div id="imagine">
             <img class="logo" src="assets/contacts.png" alt="Paris">
         </div>
@@ -26,29 +26,9 @@
                 </small>
             </div>
         </div>
-            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mt-4">Log In</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mt-4">
+                <span *ngIf="spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>    
+                    Log In
+            </button>
     </form>
-</div>    
-
-
-
-
-
-
-
-
-<!-- 
-
-
-
-
-  <div *ngIf="name.errors?.required">
-    Name is required.
-  </div>
-  <div *ngIf="password.errors?.minlength">
-    Name must be at least 4 characters long.
-  </div>
-  <div *ngIf="name.errors?.forbiddenName">
-    Name cannot be Bob.
-  </div>
-</div> -->
+</div>
