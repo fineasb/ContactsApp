@@ -1,20 +1,54 @@
 <div id="form">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="SendIt()">
         <div id="imagine">
             <img class="logo" src="assets/contacts.png" alt="Paris">
         </div>
         <div class="row">
             <div class="col-md-12">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input type="email" class="form-control" name="email" formControlName="email" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger border border-danger">
+                        <p>Please enter a valid email</p>
+                        <div *ngIf="email.errors?.required"><p>Email is required.</p></div>
+                    </div>
+                </small>
             </div>
         </div>   
         <div class="row pt-3">
             <div class="col-md-12">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your freaking password with anyone else.</small>
+                <input type="password" class="form-control" formControlName="password" id="Password" placeholder="Password">
+                <small id="emailHelp" class="form-text text-muted">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger border border-danger">
+                        <p>Please enter a password</p>
+                        <div *ngIf="password.errors?.required"><p>Password is required.</p></div>   
+                        <div *ngIf="password.errors?.minlength">Password must be at least 4 characters long.</div>
+                    </div>
+                </small>
             </div>
         </div>
-            <button type="submit" class="btn btn-primary btn-block mt-4">Log In</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mt-4">Log In</button>
     </form>
 </div>    
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+  <div *ngIf="name.errors?.required">
+    Name is required.
+  </div>
+  <div *ngIf="password.errors?.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors?.forbiddenName">
+    Name cannot be Bob.
+  </div>
+</div> -->
