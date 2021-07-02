@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  showFiller = false;
   spinner:boolean = false;
 
   constructor(private router:Router) { }
