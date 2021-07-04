@@ -4,28 +4,18 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 
-
-const routes: Routes = [
-    { path: 'home', component: LayoutComponent,
-    children: [
-      { path: 'contact', loadChildren: () => import('../contact/contact.module').then(m => m.ContactModule) },
-      { path: 'favorite', loadChildren: () => import('../favorite/favorite.module').then(m => m.FavoriteModule) },
-    ] 
-  }
-];
-
-
-
 @NgModule({
-  declarations: [],
+  declarations: [
+    LayoutComponent
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,
     MatIconModule,
-    RouterModule.forRoot(routes)
+    RouterModule
   ]
 })
 export class LayoutModule { }
