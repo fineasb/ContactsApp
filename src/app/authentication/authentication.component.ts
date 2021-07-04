@@ -33,7 +33,7 @@ export class AuthenticationComponent implements OnInit {
     if(this.loginForm.invalid){
       return;
     }
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/home']);
      }, 900 );
   }
 

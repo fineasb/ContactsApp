@@ -33,6 +33,11 @@
   }
 
   .mat-drawer-container{
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0);
+        position: absolute;
+        z-index: 4;
   }
   
+  .mat-drawer{
+    background-color: #007bffd0;
+  }

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class LayoutComponent implements OnInit {
 
   showFiller = false;
   spinner:boolean = false;
@@ -15,7 +14,14 @@ export class DashboardComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+  }
 
+  favorite() {
+    this.router.navigate(['/home/favorite']);
+  }
+
+  contact() {
+    this.router.navigate(['/home/contact']);
   }
 
   logOut(){
