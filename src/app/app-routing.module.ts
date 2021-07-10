@@ -10,12 +10,11 @@ import { LayoutModule } from './shared/layout.module';
 const routes: Routes = [
     { path:'', component: AuthenticationComponent, pathMatch: 'full'},
     { path: 'home', component: LayoutComponent,
-    children: [
-      { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
-      { path: 'favorite', loadChildren: () => import('./favorite/favorite.module').then(m => m.FavoriteModule) },
-              ] 
-  }    
-  
+        children: [
+           { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
+           { path: 'favorite', loadChildren: () => import('./favorite/favorite.module').then(m => m.FavoriteModule) },
+                  ] 
+    }
 ];
 
 @NgModule({
