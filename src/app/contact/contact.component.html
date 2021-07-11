@@ -1,8 +1,4 @@
-<div class="container">
-
-   
-   
-      
+<div class="container">      
       <div class="input-group" style="margin-bottom:20px; margin-top:150px">
         <input style="max-width: 30%" type="text" placeholder="Search..." class="form-control">
         <div class="input-group-append">
@@ -11,7 +7,6 @@
           </button>  
         </div>
       </div>
-
         <table class="table table-bordered">
             <thead>
             <tr style="text-align: center;">
@@ -25,13 +20,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr style="text-align: center;">
+            <tr *ngFor="let contact of contacts$ | async" style="text-align: center;">
                 <td scope="row"><i class="fa fa-edit" style="font-size:x-large; color: #007bff;"></i></td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+                <td>{{contact.address}}</td>
+                <td>{{contact.phoneNo}}</td>
+                <td>{{contact.favourite}}</td>
                 <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
             </tr>
             <tr style="text-align: center;">
@@ -40,7 +35,7 @@
                 <td>Otto</td>
                 <td>fineas@mdo</td>
                 <td>0760504498</td>
-                <td>@mdo</td>
+                <td>yes</td>
                 <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
             </tr>
             <tr style="text-align: center;">
@@ -49,7 +44,7 @@
                 <td>Otto</td>
                 <td>fineas@mdo</td>
                 <td>0760504498</td>
-                <td><i class="fa fa-star" style="font-size: x-large; text-align: center; color: rgb(150, 177, 0); cursor: pointer;"></i></td>
+                <td>no</td>
                 <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
             </tr>
             <tr style="text-align: center;">
@@ -58,15 +53,19 @@
                 <td>Otto</td>
                 <td>fineas@mdo</td>
                 <td>0760504498</td>
-                <td>@mdo</td>
+                <td>no</td>
                 <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
             </tr>
             </tbody>
         </table>
 
-        
+            <button style="float: left;" class="btn btn-warning" type="button" aria-haspopup="true" aria-expanded="false">
+                <i style="padding-right:10px" class="fa fa-star"></i> Add To Favourite
+            </button> 
+
             <button style="float: right;" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false">
               <i style="padding-right:10px" class="fa fa-plus"></i> Add Contact
             </button>  
+            
         
 </div>

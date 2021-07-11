@@ -10,6 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppComponent } from './app.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { ContactsReducer } from './store/reducer';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StoreModule.forRoot({contacts: ContactsReducer}),
     MatSidenavModule,
     ReactiveFormsModule, FormsModule,
     BrowserAnimationsModule,
