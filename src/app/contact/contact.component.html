@@ -25,37 +25,10 @@
                 <td>{{contact.firstName}}</td>
                 <td>{{contact.lastName}}</td>
                 <td>{{contact.address}}</td>
-                <td>{{contact.phoneNo}}</td>
+                <td>{{contact.phoneNo | phoneRo}}</td>
                 <td>{{contact.favourite}}</td>
-                <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td scope="row"><i class="fa fa-edit" style="font-size:x-large; color: #007bff;"></i></td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>fineas@mdo</td>
-                <td>0760504498</td>
-                <td>yes</td>
-                <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td scope="row"><i class="fa fa-edit" style="font-size:x-large; color: #007bff;"></i></td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>fineas@mdo</td>
-                <td>0760504498</td>
-                <td>no</td>
-                <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td scope="row"><i class="fa fa-edit" style="font-size:x-large; color: #007bff;"></i></td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>fineas@mdo</td>
-                <td>0760504498</td>
-                <td>no</td>
-                <td scope="row"><i class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
-            </tr>
+                <td scope="row"><i data-toggle="modal" data-target="#deleteModal" class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
+            </tr>        
             </tbody>
         </table>
 
@@ -63,9 +36,66 @@
                 <i style="padding-right:10px" class="fa fa-star"></i> Add To Favourite
             </button> 
 
-            <button style="float: right;" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false">
+            <button  style="float: right;" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#addModal">
               <i style="padding-right:10px" class="fa fa-plus"></i> Add Contact
             </button>  
+
+            <!-- Add Contact Modal -->
+              <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">Contact</h2>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                      
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Add Contact</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delete Contact Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">Delete</h2>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure, you wanna delete this contact input?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             
         
 </div>
