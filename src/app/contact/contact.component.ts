@@ -40,7 +40,9 @@ export class ContactComponent implements OnInit {
   get phoneNumber() { return this.addForm.get('phoneNumber'); }
 
   deleteContact(id: number) {
-    this.store.dispatch(deleteContact({ id }));
+    if(confirm){
+      this.store.dispatch(deleteContact({ id }));
+    }
   }
 
   addContact(){
