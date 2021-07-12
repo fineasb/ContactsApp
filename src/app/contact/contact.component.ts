@@ -6,6 +6,7 @@ import { getContacts } from '../store/selector';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { addContact } from '../store/action';
+import { deleteContact } from '../store/action';
 
 declare var $: any;
 
@@ -38,8 +39,8 @@ export class ContactComponent implements OnInit {
   get email() { return this.addForm.get('email'); }
   get phoneNumber() { return this.addForm.get('phoneNumber'); }
 
-  deleteContact(id: string) {
-    console.log(id);
+  deleteContact(id: number) {
+    this.store.dispatch(deleteContact({ id }));
   }
 
   addContact(){

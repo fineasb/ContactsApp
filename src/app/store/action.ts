@@ -5,5 +5,5 @@ export const loadTheContacts = createAction('[Contact Component] load the contac
 
 export const addContact = createAction('[Contact Component] add contact ', props<{ contact: Contact}>());
 
-export const deleteContact = createAction('[Contact Component] delete contact ', props<{ id: string }>());
+export const deleteContact = createAction('[Contact Component] delete contact ', props<{ id: number }>());
 

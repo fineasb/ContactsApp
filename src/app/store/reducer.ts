@@ -1,4 +1,4 @@
-import { addContact, loadTheContacts } from "./action";
+import { addContact, deleteContact, loadTheContacts } from "./action";
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from "./state";
 
@@ -23,10 +23,28 @@ const _addContactReducer = createReducer(
     })
 );
 
+const _deleteContactReducer = createReducer(
+    initialState,
+    on(deleteContact, (state, { id }) => {
+      const updatedContacts = state.contacts.filter( (el) => {
+        return el.id !== id;
+      })
+
+      return {
+        ...state,
+        contacts: updatedContacts
+      };
+    } )
+);
+
 export function ContactsReducer(state, action) {
     return _contactReducer(state, action);
   }
 
 export function addContactReducer(state, action) {
     return _addContactReducer(state, action);
+}
+
+export function deleteContactReducer(state, action) {
+    return _deleteContactReducer(state, action);
 }
