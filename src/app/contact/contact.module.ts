@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { RoPipe } from './ro.pipe';
 
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -13,6 +16,7 @@ import { RoPipe } from './ro.pipe';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule, FormsModule,
     RouterModule.forChild([
       { path:'', component: ContactComponent }
     ])

@@ -13,7 +13,7 @@
                 <th scope="col">Edit</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Address</th>
+                <th scope="col">Email</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Favourite</th>
                 <th scope="col">Delete</th>
@@ -24,10 +24,10 @@
                 <td scope="row"><i class="fa fa-edit" style="font-size:x-large; color: #007bff;"></i></td>
                 <td>{{contact.firstName}}</td>
                 <td>{{contact.lastName}}</td>
-                <td>{{contact.address}}</td>
+                <td>{{contact.email}}</td>
                 <td>{{contact.phoneNo | phoneRo}}</td>
                 <td>{{contact.favourite}}</td>
-                <td scope="row"><i data-toggle="modal" data-target="#deleteModal" class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
+                <td scope="row"><i data-toggle="modal" (click)="deleteContact(contact.id)" data-target="#deleteModal" class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
             </tr>        
             </tbody>
         </table>
@@ -45,38 +45,76 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h2 class="modal-title" id="exampleModalLabel">Contact</h2>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
-                     
-                      
-
-                      
-
-
-
-
-
-
-
-
-
-
-
-
+                    <div style="text-align: center;" id="imagine">
+                      <img class="logo" style="width: 90px;" src="assets/contacts.png" alt="Paris">
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Add Contact</button>
+                    <div class="modal-body">
+                      <form [formGroup]="addForm" (ngSubmit)="addContact()">
+                        <div class="row pt-3">
+                            <div class="col-md-12">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="firstName" formControlName="firstName" id="firsName" aria-describedby="emailHelp" placeholder="First Name">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger border border-danger">
+                                        <p>Please enter the first name.</p>
+                                        <div *ngIf="firstName.errors?.required"><p>First Name is required.</p></div>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-12">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastName" formControlName="lastName" id="lastName" aria-describedby="emailHelp" placeholder="Last Name">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger border border-danger">
+                                        <p>Please enter the last name.</p>
+                                        <div *ngIf="lastName.errors?.required"><p>Last name is required.</p></div>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-12">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger border border-danger">
+                                        <p>Please enter a valid email.</p>
+                                        <div *ngIf="email.errors?.required"><p>Email is required.</p></div>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>     
+                        <div class="row pt-3">
+                            <div class="col-md-12">  
+                                <label>Phone Number</label>
+                                <input type="number" class="form-control" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger border border-danger">
+                                        <p>Please enter a phone number.</p>
+                                        <div *ngIf="phoneNumber.errors?.required"><p>Phone number is required.</p></div>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                        <div style="padding-bottom: 40px;">
+                            <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary btn-block mt-4">
+                                <span *ngIf="spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>    
+                                    Add Contact
+                            </button>
+                        </div>
+                    </form>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Delete Contact Modal -->
+              Delete Contact Modal
               <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -87,7 +125,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Are you sure, you wanna delete this contact input?
+                      Are you sure, you wanna delete this contact?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

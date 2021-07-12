@@ -1,9 +1,10 @@
 export interface Contact {
+    id?:number;
     firstName: string;
     lastName: string;
-    address: string;
+    email: string;
     phoneNo: number;
-    favourite: boolean;
+    favourite?: boolean;
 }
 
 export interface ContactsState {
