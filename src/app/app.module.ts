@@ -11,8 +11,7 @@ import { AppComponent } from './app.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { addContactReducer, ContactsReducer, deleteContactReducer } from './store/reducer';
-
+import { sharedReducer } from './store/reducer';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,7 @@ import { addContactReducer, ContactsReducer, deleteContactReducer } from './stor
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({contact: ContactsReducer, addcontact:addContactReducer, contacts: deleteContactReducer}),
+    StoreModule.forRoot({contacts: sharedReducer}),
     MatSidenavModule,
     ReactiveFormsModule, FormsModule,
     BrowserAnimationsModule,
