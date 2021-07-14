@@ -4,7 +4,6 @@ import { ContactComponent } from './contact.component';
 import { RouterModule } from '@angular/router';
 import { RoPipe } from './ro.pipe';
 
-
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 

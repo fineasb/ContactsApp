@@ -7,6 +7,7 @@ import { getContacts } from '../store/selector';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { addContact } from '../store/action';
 import { deleteContact } from '../store/action';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -21,7 +22,7 @@ export class ContactComponent implements OnInit {
 
   contacts$: Observable<Contact[]>;
 
-  constructor(private store: Store<ContactsState>, private fb:FormBuilder) { }
+  constructor(private router:Router, private store: Store<ContactsState>, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.contacts$ = this.store.select(getContacts);
