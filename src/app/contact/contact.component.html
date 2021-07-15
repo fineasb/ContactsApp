@@ -21,25 +21,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let contact of contacts$ | async" style="text-align: center;">
-                <td scope="row"><i data-toggle="modal"  data-target="#editModal" class="fa fa-edit" style="font-size:x-large; color: #007bff; cursor: pointer;"></i></td>
-                  
-                
-                
-                
-                
-                  
-
-
-
-
-
-
-
-
-
-
-
-
+                <td scope="row"><i data-toggle="modal" (click)="editContact(contact.id)"  data-target="#editModal" class="fa fa-edit" style="font-size:x-large; color: #007bff; cursor: pointer;"></i></td>
                 <td>{{contact.firstName}}</td>
                 <td>{{contact.lastName}}</td>
                 <td>{{contact.email}}</td>
@@ -165,7 +147,7 @@
                       <img class="logo" style="width: 90px;" src="assets/contacts.png" alt="Paris">
                     </div>
                     <div class="modal-body">
-                      <form [formGroup]="addForm" (ngSubmit)="addContact()">
+                      <!-- <form>
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <label>First Name</label>
@@ -220,7 +202,7 @@
                                     Update Contact
                             </button>
                         </div>
-                    </form>
+                    </form> -->
                     </div>
                   </div>
                 </div>

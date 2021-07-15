@@ -1,4 +1,4 @@
-import { addContact, deleteContact, loadTheContacts } from "./action";
+import { addContact, deleteContact, loadTheContacts, updateContact } from "./action";
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from "./state";
 
@@ -61,6 +61,15 @@ const _sharedReducer = createReducer(
       ...state,
       contacts: updatedContacts
     };
+  }),
+  on(updateContact, (state, action) => {
+    const updatedContacts = state.contacts.map((contact) => {
+      return action.contact.id === contact.id ? action.contact : contact;
+    });
+    return {
+      ...state,
+      contacts: updatedContacts,
+    }
   })
 );
 

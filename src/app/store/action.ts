@@ -7,3 +7,4 @@ export const addContact = createAction('[Contact Component] add contact ', props
 
 export const deleteContact = createAction('[Contact Component] delete contact ', props<{ id: number }>());
 
+export const updateContact = createAction('[Contact Component] update contact ', props<{ contact: Contact }>());
