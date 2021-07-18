@@ -147,35 +147,35 @@
                       <img class="logo" style="width: 90px;" src="assets/contacts.png" alt="Paris">
                     </div>
                     <div class="modal-body">
-                      <!-- <form>
+                      <form [formGroup]="updateForm" >
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" name="firstName" formControlName="firstName" id="firsName" aria-describedby="emailHelp" placeholder="First Name">
+                                <input type="text" class="form-control" name="firstName1" formControlName="firstName1" id="firstName1" placeholder="First Name">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger border border-danger">
+                                    <!-- <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter the first name.</p>
                                         <div *ngIf="firstName.errors?.required"><p>First Name is required.</p></div>
-                                    </div>
+                                    </div> -->
                                 </small>
                             </div>
                         </div>
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" name="lastName" formControlName="lastName" id="lastName" aria-describedby="emailHelp" placeholder="Last Name">
+                                <input type="text" class="form-control" name="lastName1" formControlName="lastName1" id="lastName1" aria-describedby="emailHelp" placeholder="Last Name">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger border border-danger">
+                                    <!-- <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter the last name.</p>
                                         <div *ngIf="lastName.errors?.required"><p>Last name is required.</p></div>
-                                    </div>
+                                    </div> -->
                                 </small>
                             </div>
                         </div>
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                <input type="email" class="form-control" name="email1" formControlName="email1" id="email1" aria-describedby="emailHelp" placeholder="Email">
                                 <small id="emailHelp" class="form-text text-muted">
                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter a valid email.</p>
@@ -187,7 +187,7 @@
                         <div class="row pt-3">
                             <div class="col-md-12">  
                                 <label>Phone Number</label>
-                                <input type="number" class="form-control" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+                                <input type="number" class="form-control" name="phoneNumber1" formControlName="phoneNumber1" id="phoneNumber1" placeholder="Phone Number">
                                 <small id="emailHelp" class="form-text text-muted">
                                     <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter a phone number.</p>
@@ -202,7 +202,7 @@
                                     Update Contact
                             </button>
                         </div>
-                    </form> -->
+                    </form>
                     </div>
                   </div>
                 </div>
