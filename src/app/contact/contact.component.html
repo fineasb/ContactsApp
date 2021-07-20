@@ -1,8 +1,8 @@
 <div class="container">      
       <div class="input-group" style="margin-bottom:20px; margin-top:150px">
-        <input style="max-width: 30%" type="text" placeholder="Search..." class="form-control">
+        <input [(ngModel)]="searchText" style="max-width: 30%" type="text" placeholder="Search..." class="form-control">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button" aria-haspopup="true" aria-expanded="false">
+          <button (click)="searchContact(searchText)" class="btn btn-outline-primary" type="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-search"></i>
           </button>  
         </div>
@@ -147,16 +147,16 @@
                       <img class="logo" style="width: 90px;" src="assets/contacts.png" alt="Paris">
                     </div>
                     <div class="modal-body">
-                      <form [formGroup]="updateForm" >
+                      <form [formGroup]="updateForm" (ngSubmit)="onUpdate()" >
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <label>First Name</label>
                                 <input type="text" class="form-control" name="firstName1" formControlName="firstName1" id="firstName1" placeholder="First Name">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <!-- <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger border border-danger">
+                                    <div *ngIf="firstName1.invalid && (firstName1.dirty || firstName1.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter the first name.</p>
-                                        <div *ngIf="firstName.errors?.required"><p>First Name is required.</p></div>
-                                    </div> -->
+                                        <div *ngIf="firstName1.errors?.required"><p>First Name is required.</p></div>
+                                    </div>
                                 </small>
                             </div>
                         </div>
@@ -165,10 +165,10 @@
                                 <label>Last Name</label>
                                 <input type="text" class="form-control" name="lastName1" formControlName="lastName1" id="lastName1" aria-describedby="emailHelp" placeholder="Last Name">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <!-- <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger border border-danger">
+                                    <div *ngIf="lastName1.invalid && (lastName1.dirty || lastName1.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter the last name.</p>
-                                        <div *ngIf="lastName.errors?.required"><p>Last name is required.</p></div>
-                                    </div> -->
+                                        <div *ngIf="lastName1.errors?.required"><p>Last name is required.</p></div>
+                                    </div>
                                 </small>
                             </div>
                         </div>
@@ -177,9 +177,9 @@
                                 <label>Email</label>
                                 <input type="email" class="form-control" name="email1" formControlName="email1" id="email1" aria-describedby="emailHelp" placeholder="Email">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger border border-danger">
+                                    <div *ngIf="email1.invalid && (email1.dirty || email1.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter a valid email.</p>
-                                        <div *ngIf="email.errors?.required"><p>Email is required.</p></div>
+                                        <div *ngIf="email1.errors?.required"><p>Email is required.</p></div>
                                     </div>
                                 </small>
                             </div>
@@ -189,15 +189,15 @@
                                 <label>Phone Number</label>
                                 <input type="number" class="form-control" name="phoneNumber1" formControlName="phoneNumber1" id="phoneNumber1" placeholder="Phone Number">
                                 <small id="emailHelp" class="form-text text-muted">
-                                    <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger border border-danger">
+                                    <div *ngIf="phoneNumber1.invalid && (phoneNumber1.dirty || phoneNumber1.touched)" class="alert alert-danger border border-danger">
                                         <p>Please enter a phone number.</p>
-                                        <div *ngIf="phoneNumber.errors?.required"><p>Phone number is required.</p></div>
+                                        <div *ngIf="phoneNumber1.errors?.required"><p>Phone number is required.</p></div>
                                     </div>
                                 </small>
                             </div>
                         </div>
                         <div style="padding-bottom: 40px;">
-                            <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary btn-block mt-4">
+                            <button type="submit" [disabled]="!updateForm.valid" class="btn btn-primary btn-block mt-4">
                                 <span *ngIf="spinner" data-dismiss="modal" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>    
                                     Update Contact
                             </button>

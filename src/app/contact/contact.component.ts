@@ -6,9 +6,7 @@ import { getContacts } from '../store/selector';
 import { pipe } from 'rxjs';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { addContact, updateContact } from '../store/action';
-import { deleteContact } from '../store/action';
-import { ActivatedRoute, Router } from '@angular/router';
+import { addContact, updateContact,deleteContact, searchContact } from '../store/action';
 
 declare var $: any;
 
@@ -23,6 +21,7 @@ export class ContactComponent implements OnInit , OnDestroy {
   contact: Contact;
   updateContact: Contact;
   spinner: boolean = false;
+  searchText: string;
 
   contacts$: Observable<Contact[]>;
   best$: Observable<Contact[]>;
@@ -55,10 +54,19 @@ export class ContactComponent implements OnInit , OnDestroy {
   get email() { return this.addForm.get('email'); }
   get phoneNumber() { return this.addForm.get('phoneNumber'); }
 
+  get firstName1() { return this.updateForm.get('firstName1'); }
+  get lastName1() { return this.updateForm.get('lastName1'); }
+  get email1() { return this.updateForm.get('email1');}
+  get phoneNumber1() { return this.updateForm.get('phoneNumber1'); }
+
   deleteContact(id: number) {
     if(confirm){
       this.store.dispatch(deleteContact({ id }));
     }
+  }
+
+  searchContact(search:string){
+    this.store.dispatch(searchContact({ search }));
   }
 
   addContact(){
@@ -68,23 +76,22 @@ export class ContactComponent implements OnInit , OnDestroy {
       email: this.addForm.value.email,
       phoneNo: this.addForm.value.phoneNumber
     };
-    this.store.dispatch(addContact({ contact }));
 
     this.spinner = true;
     setTimeout( () => { 
     if(this.addForm.invalid){
       return;
     }
-    ($('#addModal') as any).modal('hide');
+    this.store.dispatch(addContact({ contact }));
     this.spinner = false;
+    ($('#addModal') as any).modal('hide');
     this.addForm.reset();
      }, 900 );
   }
-  
+
   editContact(contactId:any){
-     this.contactSubscription = this.store.pipe(select((state: any) => state.contacts.contacts.find((post)=> post.id === contactId))).subscribe((data) => {
+      this.contactSubscription = this.store.pipe(select((state: any) => state.contacts.contacts.find((post)=> post.id === contactId))).subscribe((data) => {
       this.updateContact = data;
-      console.log(this.updateContact.firstName);
       this.createForm();
    });
   }
@@ -96,45 +103,42 @@ export class ContactComponent implements OnInit , OnDestroy {
         lastName1: [this.updateContact.lastName, Validators.required],
         email1: [this.updateContact.email, [Validators.email, Validators.required]],
         phoneNumber1: [this.updateContact.phoneNo, Validators.required]
-    })    
+    })   
+    
   }
 
-  get firstname() {
-    return this.updateForm.get('firstName1');
-  }
  
-  get lastname1() {
-    return this.updateForm.get('lastName1');
-  }
 
-  get email1() {
-    return this.updateForm.get('email1');
-  }
-
-  get phoneNumber1() {
-    return this.updateForm.get('phoneNumber1');
-  }
-
-  // updateContact(){
-  //   if(!this.addForm.invalid){
-  //     return;
-  //   }
+  onUpdate(){
+   
     
-  //   const firstName = this.addForm.value.firstName;
-  //   const lastName = this.addForm.value.lastName;
-  //   const email = this.addForm.value.email;
-  //   const phoneNo = this.addForm.value.phoneNo;
+    const firstName = this.updateForm.value.firstName1;
+    const lastName = this.updateForm.value.lastName1;
+    const email = this.updateForm.value.email1;
+    const phoneNo = this.updateForm.value.phoneNumber1;
     
-  //   const contact: Contact = {
-  //     id: this.contact.id,
-  //     firstName,
-  //     lastName,
-  //     email,
-  //     phoneNo
-  //   };
+    const contact: Contact = {
+      id: this.updateContact.id,
+      firstName,
+      lastName,
+      email,
+      phoneNo
+    };
 
-  //   this.store.dispatch(updateContact({ contact }));  
-  // }
+    
+    this.spinner = true;
+    setTimeout( () => { 
+      if(!this.updateForm.valid){
+        return;
+      }
+      this.store.dispatch(updateContact({ contact }));
+      this.spinner = false;
+      ($('#editModal') as any).modal('hide');
+      this.addForm.reset();
+       }, 900 );
+
+
+  }
 
 
   ngOnDestroy(){

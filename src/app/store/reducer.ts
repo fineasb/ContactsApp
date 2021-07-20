@@ -1,41 +1,6 @@
-import { addContact, deleteContact, loadTheContacts, updateContact } from "./action";
+import { addContact, deleteContact, loadTheContacts, searchContact, updateContact } from "./action";
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from "./state";
-
-// const _contactReducer = createReducer(
-//     initialState,
-//     on(loadTheContacts, (state, action) => {
-//         return {
-//           ...state
-//         };
-//       })
-// );
-
-// const _addContactReducer = createReducer(
-//     initialState,
-//     on(addContact, (state, action) => {
-//       let contact = { ...action.contact };
-      
-//       return {
-//         ...state,
-//         contacts: [...state.contacts, contact]
-//       }
-//     })
-// );
-
-// const _deleteContactReducer = createReducer(
-//     initialState,
-//     on(deleteContact, (state, { id }) => {
-//       const updatedContacts = state.contacts.filter( (el) => {
-//         return el.id !== id;
-//       })
-
-//       return {
-//         ...state,
-//         contacts: updatedContacts
-//       };
-//     })
-// );
 
 const _sharedReducer = createReducer(
   initialState,
@@ -44,19 +9,26 @@ const _sharedReducer = createReducer(
       ...state
     };
   }),
+  on(searchContact, (state, action) => {
+    const searchedContact = state.contacts.filter( (el) => {
+      return el.firstName === action.search || el.lastName === action.search || el.email === action.search;
+    })
+    return {
+      ...state,
+      contacts: searchedContact
+    };
+  }),
   on(addContact, (state, action) => {
     let contact = { ...action.contact };
-    
     return {
       ...state,
       contacts: [...state.contacts, contact]
-    }
+    };
   }),
   on(deleteContact, (state, { id }) => {
     const updatedContacts = state.contacts.filter( (el) => {
       return el.id !== id;
     })
-
     return {
       ...state,
       contacts: updatedContacts
