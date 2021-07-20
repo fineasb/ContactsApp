@@ -37,14 +37,16 @@ export class ContactComponent implements OnInit , OnDestroy {
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
       email: [ '', [Validators.email, Validators.required]],
-      phoneNumber: [ '', Validators.required]
+      phoneNumber: [ '', Validators.required],
+      favourite: ['',]
     })
 
     this.updateForm = this.fb.group({
       firstName1: ['', Validators.required],
       lastName1: [ '', Validators.required],
       email1: [ '', [Validators.email, Validators.required]],
-      phoneNumber1: [ '', Validators.required]
+      phoneNumber1: [ '', Validators.required],
+      favourite1: [ '',]
     })
    
   }
@@ -74,8 +76,11 @@ export class ContactComponent implements OnInit , OnDestroy {
       firstName: this.addForm.value.firstName,
       lastName: this.addForm.value.lastName,
       email: this.addForm.value.email,
-      phoneNo: this.addForm.value.phoneNumber
+      phoneNo: this.addForm.value.phoneNumber,
+      favourite: this.addForm.value.favourite
     };
+
+    console.log(this.addForm.value.favourite);
 
     this.spinner = true;
     setTimeout( () => { 
@@ -102,7 +107,8 @@ export class ContactComponent implements OnInit , OnDestroy {
         firstName1: [this.updateContact.firstName, Validators.required],
         lastName1: [this.updateContact.lastName, Validators.required],
         email1: [this.updateContact.email, [Validators.email, Validators.required]],
-        phoneNumber1: [this.updateContact.phoneNo, Validators.required]
+        phoneNumber1: [this.updateContact.phoneNo, Validators.required],
+        favourite1: [this.updateContact.favourite]
     })   
     
   }
@@ -116,13 +122,15 @@ export class ContactComponent implements OnInit , OnDestroy {
     const lastName = this.updateForm.value.lastName1;
     const email = this.updateForm.value.email1;
     const phoneNo = this.updateForm.value.phoneNumber1;
+    const favourite = this.updateForm.value.favourite1;
     
     const contact: Contact = {
       id: this.updateContact.id,
       firstName,
       lastName,
       email,
-      phoneNo
+      phoneNo,
+      favourite
     };
 
     
