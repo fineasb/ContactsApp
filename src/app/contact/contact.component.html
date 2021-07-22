@@ -26,7 +26,7 @@
                 <td>{{contact.lastName}}</td>
                 <td>{{contact.email}}</td>
                 <td>{{contact.phoneNo | phoneRo}}</td>
-                <td>{{contact.favourite == true ? 'favourite' : 'unfavourite' }} </td>
+                <td style="user-select: none">{{contact.favourite == true ? 'favourite' : 'unfavourite' }} </td>
                 <td scope="row"><i data-toggle="modal"  data-target="#deleteModal" class="fa fa-trash" style="font-size: x-large; text-align: center; color: red; cursor: pointer;"></i></td>
                       <!-- Delete Contact Modal -->
                       <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
