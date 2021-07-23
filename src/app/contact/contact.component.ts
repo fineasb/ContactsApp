@@ -117,7 +117,6 @@ export class ContactComponent implements OnInit , OnDestroy {
 
   onUpdate(){
    
-    
     const firstName = this.updateForm.value.firstName1;
     const lastName = this.updateForm.value.lastName1;
     const email = this.updateForm.value.email1;

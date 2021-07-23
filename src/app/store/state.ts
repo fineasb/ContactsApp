@@ -17,7 +17,7 @@ export const initialState: ContactsState = {
             lastName: 'catalizator', 
             email: 'ileanaberindei@yahoo.com', 
             phoneNo: 782736499, 
-            favourite: null
+            favourite: false
         },
         {
             id: 3,
@@ -33,7 +33,7 @@ export const initialState: ContactsState = {
             lastName: 'Carbasan', 
             email: 'jasonalicea@yahoo.com', 
             phoneNo: 792817333, 
-            favourite: null
+            favourite: false
         },
         {
             id: 5,
@@ -41,7 +41,7 @@ export const initialState: ContactsState = {
             lastName: 'yulu', 
             email: 'karenelizabeth@yahoo.com', 
             phoneNo: 772638299, 
-            favourite: true
+            favourite: false
         }
     ]
 }
