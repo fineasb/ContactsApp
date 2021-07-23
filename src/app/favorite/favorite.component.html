@@ -18,7 +18,7 @@
                   <td>{{contact.lastName}}</td>
                   <td>{{contact.email}}</td>
                   <td>{{contact.phoneNo | phoneRo}}</td>
-                  <td style="user-select: none">{{contact.favourite == true ? 'favourite' : 'unfavourite' }} </td>
+                  <td style="user-select: none"><i *ngIf="!contact.favourite" (click)="editContact(contact.id)" data-toggle="modal"  data-target="#editModal" class="fa fa-star-o" style="font-size:x-large; color: #007bff; cursor: pointer;"></i><i *ngIf="contact.favourite" (click)="editContact(contact.id)" data-toggle="modal"  data-target="#editModal" class="fa fa-star" style="font-size:x-large; color: #007bff; cursor: pointer;"></i></td>
             </ng-container> 
           </tr>      
           </tbody>
@@ -43,13 +43,13 @@
               <td>{{contact.lastName}}</td>
               <td>{{contact.email}}</td>
               <td>{{contact.phoneNo | phoneRo}}</td>
-              <td style="user-select: none">{{contact.favourite == true ? 'favourite' : 'unfavourite' }} </td>           
+              <td style="user-select: none">{{contact.favourite == true ? 'favourite' : 'unfavourite' }}</td>           
           </tr>      
           </tbody>
         </table>  
       </mat-tab>
     </mat-tab-group>
-          
+
     <div class="modal" id="editModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

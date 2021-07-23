@@ -13,8 +13,8 @@ export const initialState: ContactsState = {
         },
         {
             id: 2,
-            firstName: 'aline', 
-            lastName: 'catalizator', 
+            firstName: 'i am the best programmer', 
+            lastName: 'Hire me please', 
             email: 'ileanaberindei@yahoo.com', 
             phoneNo: 782736499, 
             favourite: false
@@ -37,8 +37,8 @@ export const initialState: ContactsState = {
         },
         {
             id: 5,
-            firstName: 'hamster', 
-            lastName: 'yulu', 
+            firstName: 'I will try my best in this team', 
+            lastName: 'I promise', 
             email: 'karenelizabeth@yahoo.com', 
             phoneNo: 772638299, 
             favourite: false
