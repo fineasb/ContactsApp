@@ -1,4 +1,4 @@
-import { addContact, deleteContact, loadTheContacts, searchContact, updateContact } from "./action";
+import { addContact, addContactSuccess, deleteContact, loadTheContacts, searchContact, updateContact } from "./action";
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from "./state";
 

@@ -6,6 +6,7 @@ export const loadTheContacts = createAction('[Contact Component] load the contac
 export const searchContact = createAction('[Contact Component] search contact ', props<{ search:string}>());
 
 export const addContact = createAction('[Contact Component] add contact ', props<{ contact: Contact}>());
+export const addContactSuccess = createAction('[Contact Component] add contact success ', props<{ contact: Contact}>());
 
 export const deleteContact = createAction('[Contact Component] delete contact ', props<{ id: number }>());
 
