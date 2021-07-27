@@ -25,6 +25,13 @@ const _sharedReducer = createReducer(
       contacts: [...state.contacts, contact]
     };
   }),
+  on(addContactSuccess, (state, action) => {
+    let contact = { ...action.contact };
+    return {
+      ...state,
+      contacts: [...state.contacts, contact]
+    };
+  }),
   on(deleteContact, (state, { id }) => {
     const updatedContacts = state.contacts.filter( (el) => {
       return el.id !== id;

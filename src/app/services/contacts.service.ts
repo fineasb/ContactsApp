@@ -7,13 +7,10 @@ import { Contact } from '../models/contacts.model';
 })
 export class ContactsService {
 
-  constructor( private http: HttpClient) { }
-
+  constructor(private http: HttpClient) { }
 
   addContact(contact: Contact) {
-    return this.http.post('apiiiiiii', contact);
+    return this.http.post(`https://vue-completecourse.firebaseio.com/`, contact);
   }
-
-
 
 }

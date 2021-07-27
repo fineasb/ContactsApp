@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ContactsService } from "../services/contacts.service";
-import { addContact } from "./action";
-import { map, mergeMap } from "rxjs/operators";
+import { addContact, addContactSuccess, loadTheContacts } from "./action";
+import { map, mergeMap, delay } from "rxjs/operators";
 
 @Injectable()
 export class ContactsEffects {
@@ -13,8 +13,10 @@ export class ContactsEffects {
             ofType(addContact),
             mergeMap((action) => {
                 return this.contactsService.addContact(action.contact).pipe(
+                    delay(1500),
                     map((data) => {
-                        console.log(data);
+                        const contact = { ...action.contact};
+                        return addContactSuccess({contact});
                     })
                 );
             })

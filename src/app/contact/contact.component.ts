@@ -6,7 +6,7 @@ import { getContacts } from '../store/selector';
 import { pipe } from 'rxjs';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { addContact, updateContact,deleteContact, searchContact } from '../store/action';
+import { addContact, updateContact,deleteContact, searchContact, loadTheContacts } from '../store/action';
 
 declare var $: any;
 
@@ -32,12 +32,13 @@ export class ContactComponent implements OnInit , OnDestroy {
   ngOnInit(): void {
 
     this.contacts$ = this.store.select(getContacts);
+    this.store.dispatch(loadTheContacts());
 
     this.addForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
       email: [ '', [Validators.email, Validators.required]],
-      phoneNumber: [ '', Validators.required],
+      phoneNumber: [ '', Validators.required, Validators.pattern("[0-9 ]{10}")],
       favourite: ['',]
     })
 
@@ -45,7 +46,7 @@ export class ContactComponent implements OnInit , OnDestroy {
       firstName1: ['', Validators.required],
       lastName1: [ '', Validators.required],
       email1: [ '', [Validators.email, Validators.required]],
-      phoneNumber1: [ '', Validators.required],
+      phoneNumber1: [ '', Validators.required, Validators.pattern("[0-9 ]{10}")],
       favourite1: [ '',]
     })
    
@@ -146,7 +147,6 @@ export class ContactComponent implements OnInit , OnDestroy {
 
 
   }
-
 
   ngOnDestroy(){
     if(this.contactSubscription){
