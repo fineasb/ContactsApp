@@ -3,10 +3,10 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Contact, ContactsState } from '../models/contacts.model';
 import { getContacts } from '../store/selector';
-import { pipe } from 'rxjs';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { addContact, updateContact,deleteContact, searchContact, loadTheContacts } from '../store/action';
+import { delay } from 'rxjs/operators';
 
 declare var $: any;
 
@@ -31,14 +31,14 @@ export class ContactComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
 
-    this.contacts$ = this.store.select(getContacts);
+    this.contacts$ =  this.store.select(getContacts).pipe(delay(1500));
     this.store.dispatch(loadTheContacts());
 
     this.addForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
       email: [ '', [Validators.email, Validators.required]],
-      phoneNumber: [ '', Validators.required, Validators.pattern("[0-9 ]{10}")],
+      phoneNumber: [ '', Validators.required],
       favourite: ['',]
     })
 
@@ -46,7 +46,7 @@ export class ContactComponent implements OnInit , OnDestroy {
       firstName1: ['', Validators.required],
       lastName1: [ '', Validators.required],
       email1: [ '', [Validators.email, Validators.required]],
-      phoneNumber1: [ '', Validators.required, Validators.pattern("[0-9 ]{10}")],
+      phoneNumber1: [ '', Validators.required],
       favourite1: [ '',]
     })
    
@@ -80,9 +80,6 @@ export class ContactComponent implements OnInit , OnDestroy {
       phoneNo: this.addForm.value.phoneNumber,
       favourite: this.addForm.value.favourite
     };
-
-    console.log(this.addForm.value.favourite);
-
     this.spinner = true;
     setTimeout( () => { 
     if(this.addForm.invalid){
@@ -113,8 +110,6 @@ export class ContactComponent implements OnInit , OnDestroy {
     })   
     
   }
-
- 
 
   onUpdate(){
    

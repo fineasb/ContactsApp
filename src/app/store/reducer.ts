@@ -6,7 +6,8 @@ const _sharedReducer = createReducer(
   initialState,
   on(loadTheContacts, (state, action) => {
     return {
-      ...state
+      ...state,
+      loading: true
     };
   }),
   on(searchContact, (state, action) => {
