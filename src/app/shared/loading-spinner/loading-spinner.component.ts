@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { getLoading } from '../shared.selector';
+import { SharedState } from '../shared.state';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingSpinnerComponent implements OnInit {
 
-  constructor() { }
+  showLoading: Observable<boolean>;
+
+  constructor(private store: Store<SharedState>) { }
 
   ngOnInit(): void {
+    this.showLoading = this.store.select(getLoading);
   }
 
 }

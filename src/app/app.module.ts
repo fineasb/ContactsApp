@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { sharedReducer } from './store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ContactsEffects } from './store/effects';
+import { SharedSpinnerReducer } from './shared/shared.reducer';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ContactsEffects } from './store/effects';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({contacts: sharedReducer}),
+    StoreModule.forRoot({shared: SharedSpinnerReducer, contacts: SharedSpinnerReducer}),
     EffectsModule.forRoot([ContactsEffects]),
     MatSidenavModule,
     ReactiveFormsModule, FormsModule,
