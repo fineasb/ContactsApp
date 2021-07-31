@@ -27,7 +27,6 @@ export class ContactComponent implements OnInit , OnDestroy {
   status: boolean;
   loadingSpinner$: Observable<boolean>;
   searchText: string;
-
   contacts$: Observable<Contact[]>;
   contactSubscription: Subscription;
 
@@ -70,7 +69,8 @@ export class ContactComponent implements OnInit , OnDestroy {
   get phoneNumber1() { return this.updateForm.get('phoneNumber1'); }
 
   deleteContact(id: number) {
-    if(confirm){
+    console.log(id);
+    if(confirm('Are you sure you want to delete it?')){
       this.store.dispatch(deleteContact({ id }));
     }
   }
@@ -107,15 +107,13 @@ export class ContactComponent implements OnInit , OnDestroy {
   }
 
   createForm() {
-
     this.updateForm = this.fb.group({
         firstName1: [this.updateContact.firstName, Validators.required],
         lastName1: [this.updateContact.lastName, Validators.required],
         email1: [this.updateContact.email, [Validators.email, Validators.required]],
         phoneNumber1: [this.updateContact.phoneNo, Validators.required],
         favourite1: [this.updateContact.favourite]
-    })   
-    
+    })    
   }
 
   onUpdate(){

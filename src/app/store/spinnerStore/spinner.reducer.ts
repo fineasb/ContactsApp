@@ -2,7 +2,6 @@ import { createReducer, on } from "@ngrx/store";
 import { initialState } from "../spinnerStore/spinner.state";
 import { setLoadingSpinner } from "./spinner.action";
 
-
 const _sharedSpinnerReducer = createReducer(
     initialState,
     on( setLoadingSpinner, (state, action) =>{
