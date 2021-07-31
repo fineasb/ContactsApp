@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { sharedReducer } from './store/reducer';
+import { sharedSpinnerReducer } from './store/spinnerStore/spinner.reducer';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { sharedReducer } from './store/reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({contacts: sharedReducer}),
+    StoreModule.forRoot({contacts: sharedReducer, loadingSpinner: sharedSpinnerReducer}),
     MatSidenavModule,
     ReactiveFormsModule, FormsModule,
     BrowserAnimationsModule,

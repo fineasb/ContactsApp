@@ -7,6 +7,9 @@ import { getContacts } from '../store/selector';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { addContact, updateContact,deleteContact, searchContact} from '../store/action';
 import { delay } from 'rxjs/operators';
+import { getLoading } from '../store/spinnerStore/spinner.selector';
+import { Spinner } from '../store/spinnerStore/spinner.state';
+import { setLoadingSpinner } from '../store/spinnerStore/spinner.action';
 
 declare var $: any;
 
@@ -21,23 +24,23 @@ export class ContactComponent implements OnInit , OnDestroy {
   contact: Contact;
   updateContact: Contact;
   spinner: boolean = false;
-  spinner2: any = true;
+  status: boolean;
+  loadingSpinner$: Observable<boolean>;
   searchText: string;
 
   contacts$: Observable<Contact[]>;
-  best$: Observable<Contact[]>;
   contactSubscription: Subscription;
 
-  constructor( private store: Store<ContactsState>, private fb:FormBuilder) { }
+  constructor( private store: Store<ContactsState>, private spinnerStore: Store<Spinner>, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
     this.contacts$ =  this.store.select(getContacts).pipe(delay(1500));
-    this.spinner2 = this.store.select(getContacts);
-    // this.contacts$.subscribe( () => {
-    //   this.spinner2 = false
-    // });
-
+      this.contacts$.subscribe( () => {
+      this.spinnerStore.dispatch(setLoadingSpinner({ status: false }));
+      });
+    this.loadingSpinner$ = this.store.select(getLoading);
+    
     this.addForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
