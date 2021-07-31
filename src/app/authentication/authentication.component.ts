@@ -13,6 +13,7 @@ export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
   spinner: boolean = false;
+  
   constructor(private fb:FormBuilder, private router:Router) { }
  
 
@@ -27,7 +28,6 @@ export class AuthenticationComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   LogIn(){
-    console.log(this.loginForm.value);
     this.spinner = true;
     setTimeout( () => { 
     if(this.loginForm.invalid){
