@@ -5,7 +5,7 @@ import { Contact, ContactsState } from '../models/contacts.model';
 import { getContacts } from '../store/selector';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { addContact, updateContact,deleteContact, searchContact, loadTheContacts } from '../store/action';
+import { addContact, updateContact,deleteContact, searchContact} from '../store/action';
 import { delay } from 'rxjs/operators';
 
 declare var $: any;
@@ -21,6 +21,7 @@ export class ContactComponent implements OnInit , OnDestroy {
   contact: Contact;
   updateContact: Contact;
   spinner: boolean = false;
+  spinner2: any = true;
   searchText: string;
 
   contacts$: Observable<Contact[]>;
@@ -32,14 +33,17 @@ export class ContactComponent implements OnInit , OnDestroy {
   ngOnInit(): void {
 
     this.contacts$ =  this.store.select(getContacts).pipe(delay(1500));
-    this.store.dispatch(loadTheContacts());
+    this.spinner2 = this.store.select(getContacts);
+    // this.contacts$.subscribe( () => {
+    //   this.spinner2 = false
+    // });
 
     this.addForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
       email: [ '', [Validators.email, Validators.required]],
       phoneNumber: [ '', Validators.required],
-      favourite: ['',]
+      favourite: ['']
     })
 
     this.updateForm = this.fb.group({
@@ -47,7 +51,7 @@ export class ContactComponent implements OnInit , OnDestroy {
       lastName1: [ '', Validators.required],
       email1: [ '', [Validators.email, Validators.required]],
       phoneNumber1: [ '', Validators.required],
-      favourite1: [ '',]
+      favourite1: ['']
     })
    
   }

@@ -11,7 +11,9 @@ html, body { height: 100%; }
     z-index: 0 !important;
 }
 
-
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background-color: #007bffd0;
+}
 
 
 .mat-tab-label, .mat-tab-link{

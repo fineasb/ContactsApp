@@ -7,7 +7,7 @@
           </button>  
         </div>
       </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
             <thead>
             <tr style="text-align: center;">
                 <th scope="col">Edit</th>
@@ -21,7 +21,11 @@
             </thead>
             <tbody>
               <tr>
-              <app-loading-spinner></app-loading-spinner>
+                <div *ngIf="spinner2" id="loadingSpinner" class="container">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
               </tr>
             <tr *ngFor="let contact of contacts$ | async" style="text-align: center;">
                 <td scope="row"><i data-toggle="modal" (click)="editContact(contact.id)"  data-target="#editModal" class="fa fa-edit" style="font-size:x-large; color: #007bff; cursor: pointer;"></i></td>
