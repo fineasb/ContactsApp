@@ -17,11 +17,11 @@ export class LayoutComponent implements OnInit {
   }
 
   favorite() {
-    this.router.navigate(['/home/favorite']);
+    this.router.navigate(['/dashboard/favorite']);
   }
 
   contact() {
-    this.router.navigate(['/home/contact']);
+    this.router.navigate(['/dashboard/contact']);
   }
 
   logOut(){
