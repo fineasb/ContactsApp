@@ -19,7 +19,7 @@ export class FavoriteComponent implements OnInit {
   contact: Contact;
   updateContact: Contact;
   favoriteForm: FormGroup;
-  spinner: boolean = false;
+  spinner: boolean;
 
   contacts$: Observable<Contact[]>;
   favourites;
@@ -28,6 +28,7 @@ export class FavoriteComponent implements OnInit {
   constructor(private favoriteService: FavoriteService, private store: Store<ContactsState>, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.spinner = false;
     this.contacts$ = this.favoriteService.getContacts();
     this.contacts$.subscribe(el => this.favourites = el);
     this.favoriteForm = this.fb.group({

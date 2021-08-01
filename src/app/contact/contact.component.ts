@@ -20,7 +20,7 @@ export class ContactComponent implements OnInit , OnDestroy {
   updateForm: FormGroup;
   contact: Contact;
   updateContact: Contact;
-  spinner: boolean = false;
+  spinner: boolean;
   status: boolean;
   loadingSpinner$: Observable<boolean>;
   searchText: string;
@@ -31,6 +31,7 @@ export class ContactComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
     
+    this.spinner = false;
     this.contactsService.spinnerTrue();
     this.contacts$ = this.contactsService.getContacts().pipe(delay(1500));
       this.contacts$.subscribe( () => {

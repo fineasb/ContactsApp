@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 export class AuthenticationComponent implements OnInit {
 
   loginForm: FormGroup;
-  spinner: boolean = false;
+  spinner: boolean;
   
   constructor(private fb:FormBuilder, private router:Router) { }
  
 
   ngOnInit(): void {
+      this.spinner = false;
       this.loginForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: [ '', [Validators.required, Validators.minLength(4)]]
