@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-authentication',
@@ -15,7 +14,7 @@ export class AuthenticationComponent implements OnInit {
   loginForm: FormGroup;
   spinner: boolean = false;
   
-  constructor(private fb:FormBuilder, private router:Router, private authenticationService: AuthenticationService) { }
+  constructor(private fb:FormBuilder, private router:Router) { }
  
 
   ngOnInit(): void {

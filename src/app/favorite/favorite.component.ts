@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Contact, ContactsState } from '../models/contacts.model';
-import { getContacts } from '../store/selector';
+import { delay } from 'rxjs/operators';
 
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {updateContact } from '../store/action';
+import { FavoriteService } from '../services/favorite.service';
 
 declare var $: any;
 
@@ -16,7 +16,6 @@ declare var $: any;
 })
 export class FavoriteComponent implements OnInit {
  
-
   contact: Contact;
   updateContact: Contact;
   favoriteForm: FormGroup;
@@ -26,10 +25,10 @@ export class FavoriteComponent implements OnInit {
   favourites;
   contactSubscription: Subscription;
 
-  constructor( private store: Store<ContactsState>, private fb:FormBuilder) { }
+  constructor(private favoriteService: FavoriteService, private store: Store<ContactsState>, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.contacts$ = this.store.select(getContacts);
+    this.contacts$ = this.favoriteService.getContacts();
     this.contacts$.subscribe(el => this.favourites = el);
     this.favoriteForm = this.fb.group({
       firstName: [''],
@@ -81,7 +80,7 @@ export class FavoriteComponent implements OnInit {
       if(!this.favoriteForm.valid){
         return;
       }
-      this.store.dispatch(updateContact({ contact }));
+      this.favoriteService.updateContact(contact);
       this.spinner = false;
       ($('#editModal') as any).modal('hide');
       this.favoriteForm.reset();

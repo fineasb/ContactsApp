@@ -4,10 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Contact, ContactsState } from '../models/contacts.model';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { addContact, updateContact,deleteContact, searchContact} from '../store/action';
 import { delay } from 'rxjs/operators';
 import { Spinner } from '../store/spinnerStore/spinner.state';
-import { setLoadingSpinner } from '../store/spinnerStore/spinner.action';
 import { ContactsService } from '../services/contacts.service';
 
 declare var $: any;
