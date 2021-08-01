@@ -1,12 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout.component';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LayoutComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

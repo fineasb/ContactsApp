@@ -5,7 +5,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { LayoutComponent } from './shared/layout.component';
 
 
-import { LayoutModule } from './shared/layout.module';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
     { path:'', component: AuthenticationComponent, pathMatch: 'full'},
@@ -19,7 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    LayoutModule,
+    SharedModule,
     AuthenticationModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule]
