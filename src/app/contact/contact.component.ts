@@ -2,14 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Contact, ContactsState } from '../models/contacts.model';
-import { getContacts, refreshContact } from '../store/selector';
 
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { addContact, updateContact,deleteContact, searchContact} from '../store/action';
 import { delay } from 'rxjs/operators';
-import { getLoading } from '../store/spinnerStore/spinner.selector';
 import { Spinner } from '../store/spinnerStore/spinner.state';
 import { setLoadingSpinner } from '../store/spinnerStore/spinner.action';
+import { ContactsService } from '../services/contacts.service';
 
 declare var $: any;
 
@@ -30,16 +29,18 @@ export class ContactComponent implements OnInit , OnDestroy {
   contacts$: Observable<Contact[]>;
   contactSubscription: Subscription;
 
-  constructor( private store: Store<ContactsState>, private spinnerStore: Store<Spinner>, private fb:FormBuilder) { }
+  constructor( private contactsService: ContactsService, private store: Store<ContactsState>, private spinnerStore: Store<Spinner>, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
-    this.contacts$ =  this.store.select(getContacts).pipe(delay(1500));
-      this.contacts$.subscribe( () => {
-      this.spinnerStore.dispatch(setLoadingSpinner({ status: false }));
-      });
-    this.loadingSpinner$ = this.store.select(getLoading);
     
+    this.contactsService.spinnerTrue();
+    this.contacts$ = this.contactsService.getContacts().pipe(delay(1500));
+      this.contacts$.subscribe( () => {
+        this.contactsService.spinnerFalse();
+      });
+    
+    this.loadingSpinner$ = this.contactsService.getLoading();
+
     this.addForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [ '', Validators.required],
@@ -69,14 +70,14 @@ export class ContactComponent implements OnInit , OnDestroy {
 
   deleteContact(id: number) {
     if(confirm('Are you sure you want to delete it?')){
-      this.store.dispatch(deleteContact({ id }));
-      this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
+      this.contactsService.deleteContact(id);
+      this.contactsService.spinnerTrue();
     }
   }
 
   searchContact(search:string){
-    this.store.dispatch(searchContact({ search }));
-    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
+    this.contactsService.searchContact(search);
+    this.contactsService.spinnerTrue();
   }
 
   addContact(){
@@ -92,8 +93,8 @@ export class ContactComponent implements OnInit , OnDestroy {
     if(this.addForm.invalid){
       return;
     }
-    this.store.dispatch(addContact({ contact }));
-    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
+    this.contactsService.addContact(contact);
+    this.contactsService.spinnerTrue();
     this.spinner = false;
     ($('#addModal') as any).modal('hide');
     this.addForm.reset();
@@ -138,14 +139,13 @@ export class ContactComponent implements OnInit , OnDestroy {
       favourite
     };
 
-    
     this.spinner = true;
     setTimeout( () => { 
       if(!this.updateForm.valid){
         return;
       }
-      this.store.dispatch(updateContact({ contact }));
-      this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
+      this.contactsService.updateContact(contact);
+      this.contactsService.spinnerTrue();
       this.spinner = false;
       ($('#editModal') as any).modal('hide');
       this.addForm.reset();
