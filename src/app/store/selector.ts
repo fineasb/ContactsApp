@@ -6,3 +6,7 @@ const getContactsState = createFeatureSelector<ContactsState>('contacts');
 export const getContacts = createSelector(getContactsState, (state) => {
     return state.contacts;
 });
+
+export const refreshContact = createSelector(getContactsState, (state) =>{
+    return state.contacts;
+});

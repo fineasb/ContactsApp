@@ -6,7 +6,7 @@ export const initialState: ContactsState = {
         {
             id: 1,
             firstName: 'mihalache', 
-            lastName: 'belciug', 
+            lastName: 'Mihailescu', 
             email: 'emmaberindei@yahoo.com', 
             phoneNo: 760504498, 
             favourite: true
@@ -21,7 +21,7 @@ export const initialState: ContactsState = {
         },
         {
             id: 3,
-            firstName: 'bulache', 
+            firstName: 'Bulancea', 
             lastName: 'mirand', 
             email: 'joshberindei@yahoo.com', 
             phoneNo: 782746388, 

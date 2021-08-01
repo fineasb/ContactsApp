@@ -1,6 +1,9 @@
 <div class="container">      
-      <div class="input-group" style="margin-bottom:20px; margin-top:150px">
-        <input [(ngModel)]="searchText" style="max-width: 30%" type="text" placeholder="Search..." class="form-control">
+      <div class="input-group" style="margin-bottom:20px; margin-top:50px">
+        <input [(ngModel)]="searchText" (keyup.enter)="searchContact(searchText)" #search style="max-width: 30%" type="text" placeholder="Search..." class="form-control">
+        <button *ngIf="search.value" type="button" (click)="clear()" class="btn bg-transparent" style=" color: Dodgerblue; margin-left: -40px; z-index: 100;">
+          <i class="fa fa-times"></i>
+        </button>
         <div class="input-group-append">
           <button (click)="searchContact(searchText)" class="btn btn-outline-primary" type="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-search"></i>

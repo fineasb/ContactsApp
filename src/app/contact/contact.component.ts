@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Contact, ContactsState } from '../models/contacts.model';
-import { getContacts } from '../store/selector';
+import { getContacts, refreshContact } from '../store/selector';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { addContact, updateContact,deleteContact, searchContact} from '../store/action';
@@ -55,7 +55,6 @@ export class ContactComponent implements OnInit , OnDestroy {
       phoneNumber1: [ '', Validators.required],
       favourite1: ['']
     })
-   
   }
 
   get firstName() { return this.addForm.get('firstName'); }
@@ -69,14 +68,15 @@ export class ContactComponent implements OnInit , OnDestroy {
   get phoneNumber1() { return this.updateForm.get('phoneNumber1'); }
 
   deleteContact(id: number) {
-    console.log(id);
     if(confirm('Are you sure you want to delete it?')){
       this.store.dispatch(deleteContact({ id }));
+      this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
     }
   }
 
   searchContact(search:string){
     this.store.dispatch(searchContact({ search }));
+    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
   }
 
   addContact(){
@@ -93,6 +93,7 @@ export class ContactComponent implements OnInit , OnDestroy {
       return;
     }
     this.store.dispatch(addContact({ contact }));
+    this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
     this.spinner = false;
     ($('#addModal') as any).modal('hide');
     this.addForm.reset();
@@ -104,6 +105,10 @@ export class ContactComponent implements OnInit , OnDestroy {
       this.updateContact = data;
       this.createForm();
    });
+  }
+
+  clear(){
+    this.searchText = '';
   }
 
   createForm() {
@@ -140,6 +145,7 @@ export class ContactComponent implements OnInit , OnDestroy {
         return;
       }
       this.store.dispatch(updateContact({ contact }));
+      this.spinnerStore.dispatch(setLoadingSpinner({ status: true }));
       this.spinner = false;
       ($('#editModal') as any).modal('hide');
       this.addForm.reset();
